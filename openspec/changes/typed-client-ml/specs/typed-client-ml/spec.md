@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: ML helper functions use typed client
-All functions in `internal/clients/elasticsearch/ml_job.go` SHALL use `GetESTypedClient()` and SHALL call the corresponding typed API methods instead of raw `esapi` methods.
+All functions in `internal/clients/elasticsearch/ml_job.go` SHALL use `GetESClient()` and SHALL call the corresponding typed API methods instead of raw `esapi` methods.
 
 #### Scenario: OpenMLJob uses typed client
 - **WHEN** `OpenMLJob` is invoked
@@ -44,7 +44,7 @@ All functions in `internal/clients/elasticsearch/ml_job.go` SHALL use `GetESType
 - **THEN** it calls `client.ML.GetDatafeedStats(...).Do(ctx)` and returns a typed `*types.DatafeedStats` instead of decoding into a custom model
 
 ### Requirement: Anomaly detection job resource uses typed client
-`internal/elasticsearch/ml/anomalydetectionjob/create.go`, `read.go`, `update.go`, and `delete.go` SHALL use `GetESTypedClient()` and SHALL NOT call raw `esapi` ML methods directly.
+`internal/elasticsearch/ml/anomalydetectionjob/create.go`, `read.go`, `update.go`, and `delete.go` SHALL use `GetESClient()` and SHALL NOT call raw `esapi` ML methods directly.
 
 #### Scenario: Create uses typed PutJob
 - **WHEN** the anomaly detection job resource creates a job
